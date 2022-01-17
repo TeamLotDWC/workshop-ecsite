@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h3><%= @customer.family_name %><%= @customer.first_name %>さんの会員情報編集</h3>
+      <%= form_with ( url:customer_path(@customer), local: true ,method: :put) do |f| %>
+      <table class='table'>
+        <tr class="form-group">
+          <td>会員ID</td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr class="form-group">
+          <td><%= f.label :name, '氏名' %></td>
+          <td><%= f.text_field :family_name, value: @customer.family_name %></td>
+          <td><%= f.text_field :first_name, value: @customer.first_name %></td>
+        </tr>
+        <tr class="form-group">
+          <td><%= f.label :name_kana, 'フリガナ' %></td>
+          <td><%= f.text_field :family_name_kana, value: @customer.family_name_kana %></td>
+          <td><%= f.text_field :first_name_kana, value: @customer.first_name_kana %></td>
+        </tr>
+        <tr class="form-group">
+          <td><%= f.label :zip_code, '郵便番号' %></td>
+          <td><%= f.text_field :zip_code, value: @customer.zip_code %></td>
+        </tr>
+        <tr class="form-group">
+          <td><%= f.label :address, '住所' %></td>
+          <td><%= f.text_field :address, value: @customer.address %></td>
+        </tr>
+        <tr class="form-group">
+          <td><%= f.label :phone_number, '電話番号' %></td>
+          <td><%= f.text_field :phone_number, value: @customer.phone_number %></td>
+        </tr>
+        <tr class="form-group">
+          <td><%= f.label :email, 'メールアドレス' %></td>
+          <td><%= f.text_field :email, value: @customer.email %></td>
+        </tr>
+        <tr class="form-group">
+          <td>会員ステータス</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit '変更を保存' %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
