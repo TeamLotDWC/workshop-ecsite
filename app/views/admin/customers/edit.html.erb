@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <h3><%= @customer.family_name %><%= @customer.first_name %>さんの会員情報編集</h3>
+      <!--form_withの指定方法不明-->
       <%= form_with ( url:customer_path(@customer), local: true ,method: :put) do |f| %>
       <table class='table'>
         <tr class="form-group">
