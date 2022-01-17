@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h3><%= @customer.family_name %><%= @customer.first_name %>さんの会員詳細</h3>
+      <table class='table' >
+        <tr>
+          <td>会員ID</td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td><%= @customer.family_name %><%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= @customer.zip_code %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
