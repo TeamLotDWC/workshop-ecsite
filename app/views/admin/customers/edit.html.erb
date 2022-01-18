@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 会員情報編集 </h5>
-      <%= form_with model :@customer, url: admin_customer_path do |f| %>
+      <%= form_with  model: @customer, url: admin_customer_path do |f| %>
         <%= render "public/shared/error_messages", resource: @customer %>
         <div class="form-group" style="display: flex">
           <div class="col-sm-3">会員ID</div>
@@ -38,10 +38,10 @@
         <div class="form-group" style="display: flex">
           <div class="col-sm-3">会員ステータス</div>
           <div class="col-sm-3">
-            <%= form.radio_button :is_deleted, :false, checked: true  %>
-            <%= form.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
-            <%= form.radio_button :is_deleted, :ture %>
-            <%= form.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_deleted, :false, checked: true  %>
+            <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_deleted, :ture %>
+            <%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
           </div>
         </div>
         <div>
