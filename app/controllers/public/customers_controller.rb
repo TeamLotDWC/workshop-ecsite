@@ -6,15 +6,15 @@ class Public::CustomersController < ApplicationController
 
   def edit
     @customer = current_customer
-    redirect_to customer_path(current_customer) unless current_customer == @customer
+    redirect_to customers_path(current_customer) unless current_customer == @customer
   end
 
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to customer_path(current_customer)
+      redirect_to customers_path(current_customer)
     else
-      render :edit
+      render :show
     end
   end
 
@@ -28,8 +28,8 @@ class Public::CustomersController < ApplicationController
   end
   
   private
-  
+
   def customer_params
-    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :zip_code, :address, :phone_number, :email)
+    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :zip_code, :address, :phone_number)
   end
 end

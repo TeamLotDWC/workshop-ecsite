@@ -9,7 +9,7 @@
       </div>
       <div class="form-group", style="display: inline-blo; margin: 0 auto;">
         <%= link_to "退会しない", customers_path, class: "btn btn-primary col-sm-2" %>
-        <%= link_to "退会する", delete_customers_path, class: "btn btn-danger col-sm-2" %>
+        <%= link_to "退会する", delete_customers_path, method: :patch, class: "btn btn-danger col-sm-2" %>
       </div>
     </div>
   </div>
