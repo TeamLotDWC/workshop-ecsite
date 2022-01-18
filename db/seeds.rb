@@ -11,3 +11,17 @@ Admin.create!(
     password: 'testtest',
 
 )
+
+5.times do |n|
+    Customer.create!(
+      email: "a#{n + 1}@a",
+      family_name: "aa郎#{n + 1}",
+      first_name: "aa#{n + 1}",
+      family_name_kana: "bb#{n + 1}",
+      first_name_kana: "bb#{n + 1}",
+      zip_code: "aaa#{n + 1}",
+      address: "aaaa#{n + 1}",
+      phone_number: "aaaaa#{n + 1}",
+      password: "aaaaaa#{n + 1}"
+    )
+  end
