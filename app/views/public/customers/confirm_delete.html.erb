@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col" style="text-align: center">
+      <h5 style="margin-top: 100px; font-weight: bold;">本当に退会しますか？</h5>
+      <div style="margin: 50px 0">
+        退会すると、会員登録機能や<br>
+        これまでの購入履歴が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </div>
+      <div class="form-group", style="display: inline-blo; margin: 0 auto;">
+        <%= link_to "退会しない", customers_path, class: "btn btn-primary col-sm-2" %>
+        <%= link_to "退会する", delete_customers_path, class: "btn btn-danger col-sm-2" %>
+      </div>
+    </div>
+  </div>
+</div>
