@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <h3><%= @customer.family_name %><%= @customer.first_name %>さんの会員情報編集</h3>
-      <!--form_withの指定方法不明-->
-      <%= form_with ( url:customer_path(@customer), local: true ,method: :put) do |f| %>
+      <!--public/customers#updateもしくはadmin/customers#update urlの指定-->
+      <%= form_with(model:@customer, url:edit_admin_customer_path, local: true ,method: :put) do |f| %>
       <table class='table'>
         <tr class="form-group">
           <td>会員ID</td>
@@ -36,8 +36,13 @@
           <td><%= f.text_field :email, value: @customer.email %></td>
         </tr>
         <tr class="form-group">
-          <td>会員ステータス</td>
-          <td></td>
+          <td><%= f.label :"会員ステータス" %></td>
+          <td>
+            <%= f.radio_button :is_deleted, true %>
+            <%= f.label :is_deletedd, "退会", {value: :true} %>
+            <%= f.radio_button :is_deleted, false %>
+            <%= f.label :is_deletedd, "有効", {value: :false} %>
+          </td>
         </tr>
         <tr>
           <td></td>
