@@ -1,0 +1,28 @@
+<%= form_with model:item, local:true do |f| %>
+  <%= render 'layouts/errors', obj: item %>
+
+ <div class="form-group">
+    <%= f.label :item_image, "商品画像" %>
+    <%= f.attachment_field :item_image, class: "form-control-file item_image" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control name" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :introduction %>
+    <%= f.text_area :introduction, class: "form-control introduction" %>
+  </div>
+  <div class="check_box">
+    <%= f.label :genre %>
+    <%= f.select :genre, [["理工学部", "理工学部"], ["経済学部", "経済学部"], ["法学部", "法学部"], ["医学部", "医学部"]], include_blank: "選択して下さい" %>
+ </div>
+
+
+
+
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>
