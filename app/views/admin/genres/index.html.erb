@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h5 style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;" >ジャンル一覧・追加</h5>
+      <table class="table ">
+        <thead>
+          <tr>
+            <td>ジャンル名</td>
+            <%= form_with uel: admin_genres_path(@genre), local: true do |f| %>
+              <td class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name %>
+              </td>
+
+              <td class="form-group">
+                <%= f.submit class: 'btn btn-success' %>
+              </td>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-active">
+            <!-- colspan? -->
+            <th></th>
+            <th>ジャンル</th>
+          </tr>
+          <tr>
+            <% @genres.each do |genre| %>
+              <td><%= genre.name %></td>
+              <td><%= link_to " 編集する ", edit_admin_genre_path(genre), class: "btn btn-success col-sm-2 offset-sm-2" %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
