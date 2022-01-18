@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
+    <h3><%= @customer.family_name %><%= @customer.first_name %>さんの会員情報編集</h3>
     <div class="col-md-10 offset-md-1">
-      <h3><%= @customer.family_name %><%= @customer.first_name %>さんの会員情報編集</h3>
       <!--public/customers#updateもしくはadmin/customers#update urlの指定-->
       <%= form_with(model:@customer, url:edit_admin_customer_path, local: true ,method: :put) do |f| %>
       <table class='table'>
@@ -46,7 +46,7 @@
         </tr>
         <tr>
           <td></td>
-          <td><%= f.submit '変更を保存' %></td>
+          <td><%= f.submit ' 変更を保存 ', class:'btn btn-success' %></td>
         </tr>
       </table>
       <% end %>

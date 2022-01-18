@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
+    <h3 class="bg-secondary" >　会員一覧　</h3>
     <div class="col-md-10 offset-md-1">
-      <h3>会員一覧</h3>
       <table class='table table-hover table-inverse'>
         <thead>
           <tr>
@@ -17,9 +17,11 @@
               <tr>
                 <td><%= customer.id %></td>
                 <td>
-                  <%= link_to admin_customer_path(customer.id) do %>
-                  <%= customer.family_name %><%= customer.first_name %>
-                  <% end %>
+                  <u>
+                    <%= link_to admin_customer_path(customer.id), class:"text-dark" do %>
+                    <%= customer.family_name %><%= customer.first_name %>
+                    <% end %>
+                  </u>
                 </td>
                 <td><%= customer.email %></td>
                 <td><%= render 'is_deleted', customer: customer %></td>
