@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="offset-sm-2 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> マイページ </h5>
+      <div>
+        <div class="form-group" style="display: flex">
+          <h5 class="col-sm-2" style="font-weight: bold;">登録情報</h5>
+          <%= link_to "　編集する　", edit_customers_path(@customer), class: "btn btn-success " %>
+        </div>
+        <table class="table table-bordered" style="boder-width: ">
+          <tr>
+            <td class="table-active">氏名</td>
+            <td><%= @customer.family_name %>  <%= @customer.first_name %></td>
+          </tr>
+          <tr>
+            <td class="table-active">カナ</td>
+            <td><%= @customer.family_name_kana %>  <%= @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <td class="table-active">郵便番号</td>
+            <td><%= @customer.zip_code %></td>
+          </tr>
+          <tr>
+            <td class="table-active">住所</td>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td class="table-active">電話番号</td>
+            <td><%= @customer.phone_number %></td>
+          </tr>
+          <tr>
+            <td class="table-active">メールアドレス</td>
+            <td><%= @customer.email %></td>
+          </tr>
+        </table>
+        <div class="form-group" style="display: flex">
+          <h5 class="col-sm-2" style="font-weight: bold;" >配送先</h5>
+          <%= link_to "　　一覧を見る　　", customers_shipping_addresses_path, class: "btn btn-primary" %>
+        </div>
+        <div class="form-group" style="display: flex" >
+          <h5 class="col-sm-2" style="font-weight: bold;">注文履歴</h5>
+          <%= link_to "　　一覧を見る　　", customers_orders_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
