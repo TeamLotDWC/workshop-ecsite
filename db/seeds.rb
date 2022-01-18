@@ -12,14 +12,16 @@ Admin.create!(
 
 )
 
+10.times do |n|
 Customer.create!(
-    email: 'a@a',
-    family_name: 'aa',
-    first_name: 'aa',
-    family_name_kana: 'bb',
-    first_name_kana: 'bb',
-    zip_code: 'aaa',
-    address: 'aaaa',
-    phone_number: 'aaaaa',
-    password: 'aaaaaa'
+    email: "a#{n + 1}@a",
+    family_name: "aa#{n + 1}",
+    first_name: "aa#{n + 1}",
+    family_name_kana: "bb#{n + 1}",
+    first_name_kana: "bb#{n + 1}",
+    zip_code: "aaa#{n + 1}",
+    address: "aaaa#{n + 1}",
+    phone_number: "aaaaa#{n + 1}",
+    password: "aaaaaa#{n + 1}"
 )
+end

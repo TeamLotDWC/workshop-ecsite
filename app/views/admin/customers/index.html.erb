@@ -22,7 +22,7 @@
                   <% end %>
                 </td>
                 <td><%= customer.email %></td>
-                <td><%= customer.is_deleted %></td>
+                <td><%= render 'is_deleted', customer: customer %></td>
               </tr>
             <% end %>
           </tr>
