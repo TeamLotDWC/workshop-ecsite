@@ -36,11 +36,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   namespace :admin do
     resources :customers, only: [:index,:show,:edit,:update]
     resources :items
-    resources :genres, only: [:index,:edit,:update, :show] do
-      collection do
-        post 'create'
-      end
-    end
+    resources :genres, only: [:index,:create,:edit,:update, :show]
     resources :orders, only: [:index,:show,:update] do
       resources :order_items, only: [:update]
     end

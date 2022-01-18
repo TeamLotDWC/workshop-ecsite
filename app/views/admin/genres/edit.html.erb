@@ -1,10 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h5 style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;" >ジャンル一覧・追加</h5>
+    <div class="col-8">
+      <h5 style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;" >ジャンル編集</h5>
       <table class="table">
         <thead>
-          <tr class="table-active">
+          <tr>
+            <td class>ジャンル名</td>
+            <%= form_with model: @genre, url:admin_genre_path, local: true do |f| %>
+              <td class="form-group">
+                <%= f.text_field :name,  value: @genre.name %>
+              </td>
+
+              <td class="form-group">
+                <%= f.submit "変更を保存", class: 'btn btn-success' %>
+              </td>
+            <% end %>
           </tr>
         </thead>
       </table>
