@@ -14,8 +14,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   get 'about' => 'homes#about'
 
   scope module: :public do
-    resource :customers, only: [:show, :edit, :update] do
+    resource :customers, only: [:show, :edit] do
       collection do
+        patch 'update'
         patch 'delete'
         get 'confirm_delete'
       end
