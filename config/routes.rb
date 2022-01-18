@@ -16,7 +16,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   scope module: :public do
     resource :customers, only: [:show, :edit] do
       collection do
-        patch 'update' => 'customers#update'
+        patch 'update'
         patch 'delete'
         get 'confirm_delete'
       end
