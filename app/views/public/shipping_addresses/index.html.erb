@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 配送先登録/一覧 </h5>
+      <%= form_with  model: @shipping_address, url: customers_shipping_address_path do |f| %>
+          <div class="form-group" style="display: flex">
+          <div class="col-sm-3">郵便番号（ハイフンなし）</div>
+          <div class="col-sm-3"><%= f.text_field :address %></div>
+          <div class="col-sm-3"></div>
+      <% end %>
+    </div>
+  </div>
+</div>

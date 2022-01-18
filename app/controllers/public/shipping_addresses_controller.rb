@@ -3,8 +3,8 @@ class Public::ShippingAddressesController < ApplicationController
 
 
   def index
-    @shipping_address.new
-    @shipping_addresses = Shipping_addresses.all
+    @shipping_address = Shipping_address.new
+    @shipping_addresses = Shipping_address.all
   end
 
   def create
@@ -12,7 +12,7 @@ class Public::ShippingAddressesController < ApplicationController
     if @shipping_address.save
       redirect_to customers_shipping_addresses_path
     else
-      @shipping_addresses = Shipping_addresses.all
+      @shipping_addresses = Shipping_address.all
       render 'index'
     end
   end
