@@ -27,10 +27,9 @@ ActiveRecord::Schema.define(version: 2022_01_16_064448) do
   create_table "cart_items", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "item_id", null: false
-    t.integer "quantity", default: 0, null: false
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id", "item_id"], name: "index_cart_items_on_customer_id_and_item_id", unique: true
     t.index ["customer_id"], name: "index_cart_items_on_customer_id"
     t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
@@ -78,11 +77,10 @@ ActiveRecord::Schema.define(version: 2022_01_16_064448) do
     t.integer "item_id", null: false
     t.integer "quantity", null: false
     t.integer "taxed_item_price_at_order", null: false
-    t.integer "process_status", null: false
+    t.integer "integer", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_order_items_on_item_id"
-    t.index ["order_id", "item_id"], name: "index_order_items_on_order_id_and_item_id", unique: true
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
