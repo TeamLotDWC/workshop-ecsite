@@ -8,12 +8,11 @@
             <td>ジャンル名</td>
             <%= form_with model: @genre, url:admin_genres_path, local: true do |f| %>
               <td class="form-group">
-                <%= f.label :name %>
                 <%= f.text_field :name %>
               </td>
 
               <td class="form-group">
-                <%= f.submit class: 'btn btn-success' %>
+                <%= f.submit "新規登録", class: 'btn btn-success' %>
               </td>
             <% end %>
           </tr>
@@ -23,10 +22,13 @@
             <!-- colspan? -->
             <th></th>
             <th>ジャンル</th>
+            <th></th>
           </tr>
           <% @genres.each do |genre| %>
+          <%= render "public/shared/error_messages", resource: genre %>
             <tr>
               <td><%= genre.name %></td>
+              <td></td>
               <td><%= link_to " 編集する ", edit_admin_genre_path(genre), class: "btn btn-success"%></td>
             </tr>
           <% end %>
