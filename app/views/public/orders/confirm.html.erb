@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 注文情報確認 </h5>
+      <table><tr><td>
+        <table border="1">
+          <tr style="background-color: #eeeeee;">
+            <th style="padding: 15px 10px;">商品名</th>
+            <th style="padding: 15px 10px;">単価(税込)</th>
+            <th style="padding: 15px 10px;">数量</th>
+            <th style="padding: 15px 10px;">小計</th>
+          </tr>
+          cart_item.each
+          <tr>
+            <td style="padding: 15px 10px;"></td>
+            <td style="padding: 15px 10px;"></td>
+            <td style="padding: 15px 10px;"></td>
+            <td style="padding: 15px 10px;"></td>
+          </tr>
+          end
+        </table>
+        </td>
+        <td valign="top">
+        <table border="1">
+          <tr >
+            <th style="padding: 15px 10px; background-color: #eeeeee;">送料</th>
+            <td style="padding: 15px 10px;">delivery_fee</td>
+          </tr>
+          <tr>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">商品合計</th>
+            <td style="padding: 15px 10px;">sum</td>
+          </tr>
+          <tr>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">請求金額</th>
+            <td style="padding: 15px 10px;">pay</td>
+          </tr>
+        </table>
+        </td></tr></table>
+
+        <table>
+          <tr>
+            <th>支払い方法</th>
+            <td>クレジットor銀行</td>
+          </tr>
+          <tr>
+            <th>お届け先</th>
+            <td>郵便番号and住所</td>
+          </tr>
+        </table>
+        注文を確定
+    </div>
+  </div>
+</div>
