@@ -7,6 +7,7 @@
           <tr>
             <td>ジャンル名</td>
             <%= form_with model: @genre, url:admin_genres_path, local: true do |f| %>
+              <%= render "public/shared/error_messages", resource: @genre %>
               <td class="form-group">
                 <%= f.text_field :name %>
               </td>
