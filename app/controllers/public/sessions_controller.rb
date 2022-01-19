@@ -23,11 +23,11 @@ class Public::SessionsController < Devise::SessionsController
     return if !@customer
     if @customer.valid_password?(params[:customer][:password])
       if @customer.is_deleted == true
-        redirect_to new_customer_registration
+        redirect_to new_customer_registration_path
       end
     end
   end
-  
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

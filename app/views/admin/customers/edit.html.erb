@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 会員情報編集 </h5>
-      <%= form_with  model: @customer, url: admin_customer_path do |f| %>
+      <h5 style="background-color: #eeeeee; display: inline-block; padding:0 20px; margin-bottom: 50px;">
+        <strong><%= @customer.family_name %><%= @customer.first_name %></strong>さんの<strong>会員情報編集</strong> 
+      </h5>
+      <%= form_with  model: @customer, url: admin_customer_path, local:true do |f| %>
         <%= render "public/shared/error_messages", resource: @customer %>
         <div class="form-group" style="display: flex">
           <div class="col-sm-3">会員ID</div>
@@ -44,10 +46,9 @@
             <%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
           </div>
         </div>
-        <div>
+        <div style="margin-bottom: 50px;">
           <div class="col-sm-4 offset-sm-3"><%= f.submit "         変更を保存         ", class: "btn btn-success" %></div>
         </div>
-
       <% end %>
       
     </div>
