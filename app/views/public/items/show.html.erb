@@ -9,7 +9,10 @@
     <div class= "col-6">
       <h4><%= @item.name %></h4>
       <p><%= @item.introduction %></p>
-      <h5><%= @item.net_price*(1+0.1) %><span class="small">(税込)</span></h5>
+      <h5><%= @item.add_tax_sales_price.to_s(:delimited) %><span class="small">(税込)</span></h5>
+    </div>
+    <div>
+
     </div>
   </div>
 </div>
