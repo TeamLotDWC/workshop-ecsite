@@ -3,16 +3,16 @@ class Public::ShippingAddressesController < ApplicationController
 
 
   def index
-    @shipping_address = Shipping_address.new
-    @shipping_addresses = Shipping_address.all
+    @shipping_address = current_customer.shipping_addresses.new
+    @shipping_addresses = current_customer.shipping_addresses.all
   end
 
   def create
-    @shipping_address = Shipping_address.new(shipping_address_params)
+    @shipping_address = current_customer.shipping_addresses.new(shipping_address_params)
     if @shipping_address.save
       redirect_to customers_shipping_addresses_path
     else
-      @shipping_addresses = Shipping_address.all
+      @shipping_addresses = current_customer.shipping_addresses.all
       render 'index'
     end
   end
@@ -36,11 +36,11 @@ class Public::ShippingAddressesController < ApplicationController
   private
 
   def set_address
-    @shipping_address = Shipping_address.find(params[:id])
+    @shipping_address = current_customer.shipping_addresses.find(params[:id])
   end
 
   def shipping_address_params
-    params.require(:shipping_address).permit(:name, :zip_code, :address)
+    params.require(:shipping_address).permit(:name, :zip_code, :address).merge(customer_id: current_customer.id)
   end
 
 
