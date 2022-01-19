@@ -6,8 +6,8 @@ devise_for :customers,skip: [:passwords, :registrations], controllers: {
 }
 devise_scope :customer do
   get 'customers/cancel' => 'public/registrations#cancel', as: :cancel_customer_registration
-  get 'customers/signup' => 'public/customers/sign_up#new', as: :new_customer_registration
-  post 'customers' => 'public/registrations#create', as: :customer_registration
+  get 'customers/signup' => 'public/registrations#new', as: :new_customer_registration
+  post 'customers' => 'public/registrations#create#create', as: :customer_registration
   
 end
 
