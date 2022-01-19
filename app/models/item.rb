@@ -4,4 +4,9 @@ class Item < ApplicationRecord
   has_many :order_items
 
   attachment :item_image, destroy: false
+
+
+  def add_tax_sales_price
+    (self.net_price * 1.10).floor
+  end
 end

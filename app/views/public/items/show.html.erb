@@ -9,7 +9,16 @@
     <div class= "col-6">
       <h4><%= @item.name %></h4>
       <p><%= @item.introduction %></p>
-      <h5><%= @item.net_price*(1+0.1) %><span class="small">(税込)</span></h5>
+      <h5><%= @item.add_tax_sales_price.to_s(:delimited) %><span class="small">(税込)</span></h5>
+      <div>
+        <%= form_with(model: @cart_item, url: customers_cart_items_path, method: :post, local:true) do |f| %>
+          <div>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.select :quantity, *[1..20] %>
+            <%= f.submit 'カートに入れる', class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
