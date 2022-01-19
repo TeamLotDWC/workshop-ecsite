@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col">
       <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 配送先登録/一覧 </h5>
-      <table>
-        <thead>
-          <%= form_with scope: :shipping_address, url: customers_shipping_addresses_path(@shipping_address), method: :post, local: true do |f| %>
+      <%= form_with scope: :shipping_address, url: customers_shipping_addresses_path(@shipping_address), method: :post, local: true do |f| %>
+        <table>
+          <thead>
             <%= render "public/shared/error_messages", resource: @shipping_address %>
             <tr>
               <td class="col-sm-3"><%= f.label :zip_code, "郵便番号（ハイフンなし）" %></td>
@@ -19,9 +19,9 @@
               <td class="col-sm-3"><%= f.text_field :name, :placeholder => "令和道子" %></td>
               <td class="col-sm-3"><%= f.submit "　新規登録　", class: "btn btn-success" %></td>
             </tr>
-          <% end %>
-        </thead>
-      </table>
+          </thead>
+        </table>
+      <% end %>
         <table border="1">
           <tr style="background-color: #eeeeee;">
             <th style="padding: 15px 10px;">郵便番号</th>

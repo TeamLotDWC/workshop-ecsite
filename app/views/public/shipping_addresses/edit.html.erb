@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col">
       <h5 class="offset-sm-2 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 配送先編集 </h5>
-      <table>
-        <thead>
-          <%= form_with scope: :shipping_address, url: customers_shipping_address_path(@shipping_address), method: :patch, local: true do |f| %>
+      <%= form_with scope: :shipping_address, url: customers_shipping_address_path(@shipping_address), method: :patch, local: true do |f| %>
+        <table>
+          <thead>
             <%= render "public/shared/error_messages", resource: @shipping_address %>
             <tr>
               <td class="col-sm-3"><%= f.label :zip_code, "郵便番号（ハイフンなし）" %></td>
@@ -19,9 +19,9 @@
               <td class="col-sm-3"><%= f.text_field :name, :placeholder => "令和道子" %></td>
               <td class="col-sm-3"><%= f.submit "変更内容を保存", class: "btn btn-success" %></td>
             </tr>
-          <% end %>
-        </thead>
-      </table>
+          </thead>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>
