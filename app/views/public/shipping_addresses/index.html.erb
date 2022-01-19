@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 配送先登録/一覧 </h5>
+      <%= form_with scope: :shipping_address, url: customers_shipping_addresses_path(@shipping_address), method: :post, local: true do |f| %>
+        <table>
+          <thead>
+            <%= render "public/shared/error_messages", resource: @shipping_address %>
+            <tr>
+              <td class="col-sm-3"><%= f.label :zip_code, "郵便番号（ハイフンなし）" %></td>
+              <td class="col-sm-3"><%= f.text_field :zip_code, :placeholder => "0000000" %></td>
+            </tr>
+            <tr>
+              <td class="col-sm-3"><%= f.label :address, "住所" %></td>
+              <td class="col-sm-3"><%= f.text_field :address, :size=>"60x0", :placeholder => "東京都渋谷区代々木神園町0-0" %></td>
+            </tr>
+            <tr>
+              <td class="col-sm-3"><%= f.label :name, "宛名" %></td>
+              <td class="col-sm-3"><%= f.text_field :name, :placeholder => "令和道子" %></td>
+              <td class="col-sm-3"><%= f.submit "　新規登録　", class: "btn btn-success" %></td>
+            </tr>
+          </thead>
+        </table>
+      <% end %>
+        <table border="1">
+          <tr style="background-color: #eeeeee;">
+            <th style="padding: 15px 10px;">郵便番号</th>
+            <th style="padding: 15px 10px;">住所</th>
+            <th style="padding: 15px 10px;">宛名</th>
+            <th colspan="2" style="padding: 15px 10px;"></th>
+          </tr>
+          <% @shipping_addresses.each do |shipping_address| %>
+            <tr>
+              <td style="padding: 15px 10px;"><%= shipping_address.zip_code %></td>
+              <td style="padding: 15px 10px;"><%= shipping_address.address %></td>
+              <td style="padding: 15px 10px;"><%= shipping_address.name %></td>
+              <td style="padding: 15px 10px;"><%= link_to "編集する", edit_customers_shipping_address_path(shipping_address), class: "btn btn-success btn-xs" %>
+              <%= link_to "削除する", customers_shipping_address_path(shipping_address), method: :delete, data:{confirm: "削除しますか？"}, class: "btn btn-danger btn-xs" %></td>
+            </tr>
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>
