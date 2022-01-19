@@ -1,0 +1,15 @@
+<div class= "container">
+  <div class= "row">
+    <div class= 'col-2'>
+      <p>ここにジャンル検索欄が入ります</p>
+    </div>
+    <div class= "col-4">
+      <%= attachment_image_tag(@item, :item_image, :fill, 200, 200) %>
+    </div>
+    <div class= "col-6">
+      <h4><%= @item.name %></h4>
+      <p><%= @item.introduction %></p>
+      <h5><%= @item.net_price*(1+0.1) %><span class="small">(税込)</span></h5>
+    </div>
+  </div>
+</div>
