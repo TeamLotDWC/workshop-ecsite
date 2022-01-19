@@ -10,7 +10,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     if @customer.update(customer_params)
       redirect_to customers_path(current_customer)
     else
@@ -26,7 +26,7 @@ class Public::CustomersController < ApplicationController
 
   def confirm_delete
   end
-  
+
   private
 
   def customer_params
