@@ -6,16 +6,13 @@
       <table class="table">
           <tr>
             <td class>ジャンル名</td>
-
               <%= render "public/shared/error_messages", resource: @genre %>
               <td class="form-group">
                 <%= f.text_field :name %>
               </td>
-
               <td class="form-group">
                 <%= f.submit "変更を保存", class: 'btn btn-success' %>
               </td>
-
           </tr>
       </table>
       <% end %>
