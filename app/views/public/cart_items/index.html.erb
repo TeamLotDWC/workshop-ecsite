@@ -1,0 +1,30 @@
+<div class= "container">
+  <div class= "row">
+    <div class= "col-12">
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |x| %>
+            <tr>
+              <td><%= link_to x.item.name, item_path(x.item_id) %></td>
+              <td><%= x.item.add_tax_sales_price %></td>
+              <td><%= x.quantity %></td>
+              <td><%= x.subtotal  %></td>
+            </tr>
+            <% @total_price +=  x.subtotal %>
+          <% end %>
+        </tbody>
+      </table>
+      <div>
+        <p>総計:<%= @total_price %></p>
+      </div>
+    </div>
+  </div>
+</div>
