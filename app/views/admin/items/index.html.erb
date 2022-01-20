@@ -1,7 +1,7 @@
 <div class= "container">
   <div class= "row">
-    <div class= "col-12">
-      <div class='text-right'>
+    <div class= "col-10 offset-col-2">
+      <div class='text-right py-3'>
         <%= link_to new_admin_item_path do %>
           <button type="button" class="btn btn-primary rounded-circle p-0" style="width:3rem; height:3rem;">＋</button>
         <% end %>
@@ -9,26 +9,34 @@
       <table class='table table-hover table-inverse table-borderless'>
         <thead>
           <tr>
-            <th style="width: 80px;">商品ID</th>
-            <th>商品名</th>
-            <th style="width: 100px;">税抜価格</th>
-            <th>ジャンル</th>
-            <th style="width: 80px;">ステータス</th>
+            <th class="text-center" style="width: 80px;">商品ID</th>
+            <th class="text-center" style="width: 250px;">商品名</th>
+            <th class="text-center" style="width: 100px;">税抜価格</th>
+            <th class="text-center" style="width: 140px;">ジャンル</th>
+            <th class="text-center" style="width: 120px;">ステータス</th>
           </tr>
         </thead>
         <tbody>
           <% @items.each do |item| %>
             <tr>
-              <td><%= item.id %></td>
-              <td><%= link_to item.name, admin_item_path(item), class: "item_#{item.id}" %></td>
-              <td><%= item.net_price.to_s(:delimited) %></td>
-              <td><%= item.genre.name %></td>
-              <td><%= item.is_stocked ? '<span class= "text-green strong">販売中</span>' : '<span>販売停止中</span>' %></td>
+              <td class="text-center"><%= item.id %></td>
+              <td class="text-center">
+                <%= link_to item.name, admin_item_path(item), class: "item_#{item.id}" %>
+              </td>
+              <td class="text-center"><%= item.net_price.to_s(:delimited) %></td>
+              <td class="text-center"><%= item.genre.name %></td>
+              <td class="text-center">
+                <% if item.is_stocked == true %>
+                  <span class= "text-success font-weight-bold">販売中</span>
+                <% else %>
+                  <span class= "text-secondary font-weight-bold">販売停止中</span>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-      <%= paginate @items %>
+      <div class="py-2 d-flex align-items-center justify-content-center"><%= paginate @items %></div>
     </div>
   </div>
 </div>
