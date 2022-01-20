@@ -20,7 +20,7 @@
               <td><%= x.item.add_tax_sales_price %></td>
               <%= form_with(model: @cart_item, url: customers_cart_item_path(x.id), method: :patch, local:true) do |f|  %>
                 <td class="d-inline-flex">
-                  <%= f.hidden_field :item_id, value: x.id %>
+                  <%= f.hidden_field :item_id, value: x.item_id %>
                   <%= f.select :quantity, *[1..20], selected: x.quantity %>
                   <%= f.submit '変更', class: 'btn btn-success' %>
                 </td>
@@ -28,7 +28,7 @@
               <td><%= x.subtotal  %></td>
               <%= form_with(model: @cart_item, url: customers_cart_item_path(x.id), method: :delete, local:true) do |f|  %>
                 <td>
-                  <%= f.hidden_field :item_id, value: x.id %>
+                  <%= f.hidden_field :item_id, value: x.item_id %>
                   <%= f.submit '削除する', class: "btn btn-danger" %>
                 </td>
               <% end %>
