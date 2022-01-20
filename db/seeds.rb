@@ -25,3 +25,9 @@ Genre.create!(
       password: "aaaaaa#{n + 1}"
     )
   end
+
+  Admin.create!(
+    email: 'test_admin@gmail.com',
+    password: 'testtest',
+
+)
