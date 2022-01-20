@@ -13,7 +13,7 @@
               <% end %>
             </div>
             <div><%= item.name %></div>
-            <div><%= item.net_price %></div>
+            <div><%= item.net_price.to_s(:delimited) %></div>
           </div>
         <% end %>
       </div>

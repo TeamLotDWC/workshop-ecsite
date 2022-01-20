@@ -4,10 +4,10 @@
       <%= attachment_image_tag(@item, :item_image, :fill, 200, 200) %>
     </div>
     <div class= "col-9">
-      <table class='table table-hover table-inverse'>
+      <table class='table table-borderless'>
         <tbody>
           <tr>
-            <td>商品名</td>
+            <td style="width: 150px;">商品名</td>
             <td><%= @item.name %></td>
           </tr>
           <tr>
@@ -19,8 +19,8 @@
             <td><%= @item.genre.name %></td>
           </tr>
           <tr>
-            <td>税抜価格</td>
-            <td><%= @item.net_price %></td>
+            <td>税込価格<br>(税抜価格)</td>
+            <td><%= @item.add_tax_sales_price.to_s(:delimited)%>（<%= @item.net_price.to_s(:delimited) %>）円</td>
           </tr>
           <tr>
             <td>販売ステータス</td>
@@ -28,7 +28,7 @@
           </tr>
         </tbody>
       </table>
-      <div class= "mx-auto py-4" style= "width: 100px;"><%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-sm btn-success" %></div>
+      <div class= "mx-5 px-5 py-4"><%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-lg btn-success" %></div>
     </div>
   </div>
 </div>
