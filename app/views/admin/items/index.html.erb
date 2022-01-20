@@ -1,12 +1,17 @@
 <div class= "container">
   <div class= "row">
     <div class= "col-12">
-      <table class='table table-hover table-inverse'>
+      <div class='text-right'>
+        <%= link_to new_admin_item_path do %>
+          <button type="button" class="btn btn-primary rounded-circle p-0" style="width:3rem; height:3rem;">＋</button>
+        <% end %>
+      </div>
+      <table class='table table-hover table-inverse table-borderless'>
         <thead>
           <tr>
-            <th>商品ID</th>
+            <th style="width: 80px;">商品ID</th>
             <th>商品名</th>
-            <th>税抜価格</th>
+            <th style="width: 100px;">税抜価格</th>
             <th>ジャンル</th>
             <th>ステータス</th>
           </tr>
@@ -16,13 +21,14 @@
             <tr>
               <td><%= item.id %></td>
               <td><%= link_to item.name, admin_item_path(item), class: "item_#{item.id}" %></td>
-              <td><%= item.net_price %></td>
+              <td><%= item.net_price.to_s(:delimited) %></td>
               <td><%= item.genre.name %></td>
               <td><%= item.is_stocked ? '販売中' : '販売停止中' %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <%= paginate @items %>
     </div>
   </div>
 </div>
