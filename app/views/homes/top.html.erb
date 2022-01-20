@@ -19,6 +19,19 @@
     <div class= 'col-2'></div>
     <div class= 'col-10'>
     　<h3>新着商品を以下に記述します</h3>
+    　<div class ="d-inline-flex">
+        <% @items.each do |item| %>
+          <div class= "item-box px-3 py-3">
+            <div>
+              <%= link_to item_path(item) do %>
+                <%= attachment_image_tag(item, :item_image, :fill, 180, 180) %>
+              <% end %>
+            </div>
+            <div><%= item.name %></div>
+            <div><%= item.net_price.to_s(:delimited) %></div>
+          </div>
+        <% end %>
+      </div>
   　</div>
   </div>
 </div>

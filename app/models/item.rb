@@ -5,6 +5,8 @@ class Item < ApplicationRecord
 
   attachment :item_image, destroy: false
 
+  validates :name, uniqueness: true, length: { in: 2..30 }
+
 
   def add_tax_sales_price
     (self.net_price * 1.10).floor
