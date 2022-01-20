@@ -3,54 +3,58 @@
     <div class="col">
       <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 注文情報確認 </h5>
       <table><tr><td>
+        <div>注文情報</div>
         <table border="1">
-          <tr style="background-color: #eeeeee;">
-            <th style="padding: 15px 10px;">商品名</th>
-            <th style="padding: 15px 10px;">単価(税込)</th>
-            <th style="padding: 15px 10px;">数量</th>
-            <th style="padding: 15px 10px;">小計</th>
-          </tr>
-          <% @cart_items.each do |cart| %>
           <tr>
-            <td style="padding: 15px 10px;"><%= cart.item.name %></td>
-            <td style="padding: 15px 10px;"><%= (cart.item.add_tax_sales_price) %></td>
-            <td style="padding: 15px 10px;"><%= cart.quantity %></td>
-            <td style="padding: 15px 10px;"><%= (cart.item.net_price*cart.quantity).to_s(:delimited) %></td>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">注文日</th>
+            <td style="padding: 15px 10px;">date</td>
           </tr>
-          <% end %>
+          <tr>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">配送先</th>
+            <td style="padding: 15px 10px;">zip_code,address,name</td>
+          </tr>
+          <tr>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">支払い方法</th>
+            <td style="padding: 15px 10px;">payment_method</td>
+          </tr>
+          <tr>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">ステータス</th>
+            <td style="padding: 15px 10px;">shipping_status</td>
+          </tr>
         </table>
         </td>
+
         <td>
+        <div>請求情報</div>
         <table border="1">
           <tr >
-            <th style="padding: 15px 10px; background-color: #eeeeee;">送料</th>
-            <td style="padding: 15px 10px;"><%= @delivery_fee %></td>
-          </tr>
-          <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">商品合計</th>
-            <td style="padding: 15px 10px;"><%= @items_total %></td>
+            <td style="padding: 15px 10px;">items_total</td>
           </tr>
           <tr>
-            <th style="padding: 15px 10px; background-color: #eeeeee;">請求金額</th>
-            <td style="padding: 15px 10px;"><%= @total %></td>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">配送料</th>
+            <td style="padding: 15px 10px;">delivery_fee</td>
+          </tr>
+          <tr>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">ご請求金額</th>
+            <td style="padding: 15px 10px;">total_price</td>
           </tr>
         </table>
       </td></tr></table>
+      <div>注文内容</div>
       <table border="1">
         <tr style="background-color: #eeeeee;">
-          <th style="padding: 15px 10px;"></th>
-          <th style="padding: 15px 10px;"></th>
-          <th style="padding: 15px 10px;"></th>
-          <th style="padding: 15px 10px;"></th>
+          <th style="padding: 15px 10px;">商品</th>
+          <th style="padding: 15px 10px;">単価(税込)</th>
+          <th style="padding: 15px 10px;">個数</th>
+          <th style="padding: 15px 10px;">小計</th>
         </tr>
-        <% @cart_items.each do |cart| %>
         <tr>
-          <td style="padding: 15px 10px;"><%= cart.item.name %></td>
-          <td style="padding: 15px 10px;"><%= (cart.item.add_tax_sales_price) %></td>
-          <td style="padding: 15px 10px;"><%= cart.quantity %></td>
-          <td style="padding: 15px 10px;"><%= (cart.item.net_price*cart.quantity).to_s(:delimited) %></td>
+          <td style="padding: 15px 10px;">name</td>
+          <td style="padding: 15px 10px;">net_price税込</td>
+          <td style="padding: 15px 10px;">quantity</td>
+          <td style="padding: 15px 10px;">items_total</td>
         </tr>
-        <% end %>
       </table>
     </div>
   </div>
