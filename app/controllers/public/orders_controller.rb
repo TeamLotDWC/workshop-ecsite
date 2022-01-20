@@ -2,6 +2,11 @@ class Public::OrdersController < ApplicationController
 
   #購入情報の入力
   def new
+    @cart = current_customer.cart_items.all
+    if @cart.empty?
+      redirect_to customers_cart_items_path, notice: 'cart is empty.'
+    end
+
     @order = Order.new
   end
 
@@ -26,10 +31,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new(order_params)
+    @order = Order.new(
+      customer: current_customer,
+      payment_method: params[:order][:payment_method]
+    )
     #[:address_number] viewで定義
     if params[:order][:address_number] == "1"
-      @order.name = current_customer.family_name, current_customer.first_name
+      @order.name = current_customer.family_name + current_customer.first_name
       @order.zip_code = current_customer.zip_code
       @order.address = current_customer.address
     elsif params[:order][:address_number] == "2"
@@ -56,6 +64,8 @@ class Public::OrdersController < ApplicationController
       @total = @cart_items + @items_total
   end
 
+
+
   private
 
   def after_confirm
@@ -67,7 +77,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def shipping_address_params
-    params.require(:shipping_address).permit(:name, :zip_code, :address)
+    params.require(:shipping_address).permit(:name, :zip_code, :address).merge(customer_id: current_customer.id)
   end
 
 end

@@ -2,20 +2,36 @@
   <div class="row">
     <div class="col">
       <h5 class="offset-sm-2 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 注文情報入力 </h5>
-      <div>
-        <div class="form-group" style="display: flex">
-          <h5 class="col-sm-2" style="font-weight: bold;">支払い方法</h5>
-          クレジットカード
-          銀行支払い
-        </div>
-        <div class="form-group" style="display: flex">
-          <h5 class="col-sm-2" style="font-weight: bold;">お届け先</h5>
-          ご自身の住所
-          登録済み住所から選択
-          新しいお届け先
-        </div>
-        確認画面へ進む
-      </div>
+        <%= form_with model: @order, url:confirm_customers_orders_path, method: :post, local: true do |f| %>
+          <div class="form-group" style="display: flex">
+            <h5 class="col-sm-2" style="font-weight: bold;">支払い方法</h5>
+            <%= f.radio_button :payment_method, :"クレジットカード", class:"form-control" %>
+            <%= f.radio_button :payment_method, :"銀行振込", class:"form-control" %>
+          </div>
+
+          <div class="form-group" style="display: flex">
+            <h5 class="col-sm-2" style="font-weight: bold;">お届け先</h5>
+            <%= f.radio_button :address_number, 1 %>
+            <%= f.label :address_number_1, "ご自身の住所" %>
+             <%= current_customer.zip_code %><%= current_customer.address %><br>
+             <%= current_customer.family_name %><%= current_customer.first_name %>
+
+            <%= f.radio_button :address_number, 2 %>
+            <%= f.label :address_number_2, "登録済み住所から選択" %>
+            <%= f.collection_select(:registered, current_customer.shipping_addresses.all, :id, :zip_code, :address, :name) %>
+
+            <%= f.radio_button :address_number, 3 %>
+            <%= f.label :address_number_3, "新しいお届け先" %>
+            <%= f.label :zip_code, "郵便番号（ハイフンなし）" %>
+            <%= f.text_field :zip_code, :placeholder => "0000000" %>
+            <%= f.label :address, "住所" %>
+            <%= f.text_field :address, :size=>"60x0", :placeholder => "東京都渋谷区代々木神園町0-0" %>
+            <%= f.label :name, "宛名" %>
+            <%= f.text_field :name, :placeholder => "令和道子" %>
+
+            <%= f.submit "確認画面へ進む", class: "btn btn-success" %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>
