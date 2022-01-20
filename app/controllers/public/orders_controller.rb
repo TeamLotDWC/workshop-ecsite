@@ -42,7 +42,7 @@ class Public::OrdersController < ApplicationController
       @delivery_fee = 800
       @cart_items = current_customer.cart_items.all
       @items_total = @cart_items.inject(0) { |sum, item| sum + item.subtotal}
-      @total = @delivery_fee + @items_total
+      @total_price = @delivery_fee + @items_total
   end
 
   #購入の確定
@@ -66,7 +66,7 @@ class Public::OrdersController < ApplicationController
         @order_items.item_id = cart.item.id
         @order_items.quantity = cart.quantity
         @order_items.taxed_item_price_at_order = cart.item.add_tax_sales_price
-        @order_items.process_status = 0
+        @order_items.process_status = 1
         @order_items.save
       end
 
@@ -93,13 +93,8 @@ class Public::OrdersController < ApplicationController
 
   private
 
-def before_create
-self.created_at = Time.now if self.created_at.blank?
-self.updated_at = Time.now if self.updated_at.blank?
-end
-
   def order_params
-    params.require(:order).permit(:name, :address, :zip_code, :delivery_fee, :payment_method).merge(customer_id: current_customer.id)
+    params.require(:order).permit(:name, :address, :zip_code, :delivery_fee, :payment_method, :total_price).merge(customer_id: current_customer.id)
   end
 
 end

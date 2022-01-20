@@ -32,33 +32,26 @@
           </tr>
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">請求金額</th>
-            <td style="padding: 15px 10px;"><%= @total_price %></td>
+            <td style="padding: 15px 10px;"><%= @total %></td>
           </tr>
         </table>
-        </td></tr></table>
-
-        <table>
-          <tr>
-            <th>支払い方法</th>
-            <td><%= @order.payment_method %></td>
-          </tr>
-          <tr>
-            <th>お届け先</th>
-            <td><%= @order.zip_code %><%= @order.address %></td>
-            <td><%= @order.name %></td>
-          </tr>
-        </table>
-        <%= form_with model: @order, url: customers_orders_path, local: true do |f| %>
-          <%= f.hidden_field :name %>
-          <%= f.hidden_field :address %>
-          <%= f.hidden_field :customer_id %>
-          <%= f.hidden_field :zip_code %>
-          <%= f.hidden_field :delivery_fee, value: 800 %>
-          <%= f.hidden_field :payment_method %>
-          <%= f.hidden_field :total_price, value: @total_price %>
-          <%= f.hidden_field :address_number, value: params[:order][:address_number] %>
-          <%= f.submit "注文を確定する" %>
+      </td></tr></table>
+      <table border="1">
+        <tr style="background-color: #eeeeee;">
+          <th style="padding: 15px 10px;"></th>
+          <th style="padding: 15px 10px;"></th>
+          <th style="padding: 15px 10px;"></th>
+          <th style="padding: 15px 10px;"></th>
+        </tr>
+        <% @cart_items.each do |cart| %>
+        <tr>
+          <td style="padding: 15px 10px;"><%= cart.item.name %></td>
+          <td style="padding: 15px 10px;"><%= (cart.item.add_tax_sales_price) %></td>
+          <td style="padding: 15px 10px;"><%= cart.quantity %></td>
+          <td style="padding: 15px 10px;"><%= (cart.item.net_price*cart.quantity).to_s(:delimited) %></td>
+        </tr>
         <% end %>
+      </table>
     </div>
   </div>
 </div>
