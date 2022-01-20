@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>注文履歴詳細</h5>
+
+      <div class="form-group" style="display: flex">
+        <div class="col-sm-3">購入者</div>
+        <div>
+          <%= link_to admin_customer_path(@order.customer) do %>
+            <%= @order.customer.family_name %><%= @order.customer.first_name %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group" style="display: flex">
+        <div class="col-sm-3">注文日</div>
+        <div><%= @order.created_at %></div>
+      </div>
+
+      <div class="form-group" style="display: flex">
+        <div class="col-sm-3">配送先</div>
+        <div><%= @order.zip_code %><%=　@order.address%></div>
+      </div>
+
+      <div class="form-group" style="display: flex">
+        <div class="col-sm-3">支払い方法</div>
+        <div><%= @order.payment_method %></div>
+      </div>
+
+      <% form_with model: @order, url: admin_order_path, local:true do |f| %>
+      <div class="form-group" style="display: flex">
+        <div class="col-sm-3">注文ステータス</div>
+        <div style="display: flex" >
+          <div><%= f.select :shipping_status, @order.shipping_status.keys,{} %></div>
+          <div><%= f.submit "更新", class: "btn btn-success" %></div>
+        </div>
+      </div>
+      <% end %>
+
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>商品名</th>
+              <th>単価（税込）</th>
+              <th>個数</th>
+              <th>小計</th>
+              <th>制作ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order.order_items.each do |order_item| %>
+              <tr>
+                <td><%= order_item.item.name %></td>
+                <td><%= order_item.taxed_item_price_at_order %></td>
+                <td><%= order_item.quantity %></td>
+                <td>
+                  <% @sum = order_item.taxed_item_price_at_order * order_item.quantity %>
+                  <%= @sum %>
+                </td>
+                <% form_with model: order_item, url: admin_order_item_path, local:true do %>
+                  <td>
+                    <div><%= f.select :process_status, order_item.process_status.keys,{} %></div>
+                    <div><%= f.submit "更新", class: "btn btn-success" %></div>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div>
+          <div class="form-group" style="display: flex">
+            <div class="col-sm-3">商品合計</div>
+            <div><%= @sum.all.sum %></div>
+          </div>
+          <div class="form-group" style="display: flex">
+            <div class="col-sm-3">送料</div>
+            <div><%= @order.delivery_fee %></div>
+          </div>
+          <div class="form-group" style="display: flex">
+            <div class="col-sm-3">請求金額合計</div>
+            <div><%= @sum.all.sum + @order.delivery_fee %></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
