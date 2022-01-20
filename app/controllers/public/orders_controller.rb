@@ -31,7 +31,6 @@ class Public::OrdersController < ApplicationController
       @order.zip_code = params[:order][:zip_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
-      @ship_address = "1"
 
       unless @order.valid? == true
         @shipping_addresses = ShippingAddress.where(customer: current_customer)
@@ -52,9 +51,14 @@ class Public::OrdersController < ApplicationController
     if @order.save
       flash[:notice] = "Completed Order"
 
-      if params[:order][:ship] == "1"
-        current_customer.shipping_address.create(address_params)
+      if params[:order][:address_number] == "3"
+        current_customer.shipping_addresses.create(
+          name: params[:order][:name],
+          zip_code: params[:order][:zip_code],
+          address: params[:order][:address]
+        )
       end
+
 
       @cart_items = CartItem.where(customer: current_customer)
       @cart_items.destroy_all
@@ -75,10 +79,6 @@ end
 
   def order_params
     params.require(:order).permit(:name, :address, :zip_code, :delivery_fee, :payment_method).merge(customer_id: current_customer.id)
-  end
-
-  def shipping_addresses_params
-    params.require(:shipping_addresses).permit(:name, :zip_code, :address).merge(customer_id: current_customer.id)
   end
 
 end

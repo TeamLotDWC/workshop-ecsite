@@ -55,6 +55,7 @@
           <%= f.hidden_field :zip_code %>
           <%= f.hidden_field :delivery_fee, value: 800 %>
           <%= f.hidden_field :payment_method %>
+          <%= f.hidden_field :address_number, value: params[:order][:address_number] %>
           <%= f.submit "注文を確定する" %>
         <% end %>
     </div>
