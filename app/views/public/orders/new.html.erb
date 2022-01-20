@@ -12,7 +12,7 @@
 
 
             <h5 class="col-sm-2" style="font-weight: bold;">お届け先</h5>
-            <%= f.radio_button :address_number, 1%>
+            <%= f.radio_button :address_number, 1, checked: true %>
             <%= f.label :address_number_1, "ご自身の住所" %>
              <%= "#{current_customer.zip_code} #{current_customer.address}" %>
              <%= current_customer.family_name %><%= current_customer.first_name %><br>
@@ -21,7 +21,7 @@
             <%= f.label :address_number_2, "登録済み住所から選択" %><br>
              <%= f.collection_select(:registered, @shipping_addresses.all, :id, :full_address, prompt: "選択してください") %>
 
-            <%= f.radio_button :address_number, 3, checked: true  %>
+            <%= f.radio_button :address_number, 3 %>
             <%= f.label :address_number_3, "新しいお届け先" %>
             <%= f.label :zip_code, "郵便番号（ハイフンなし）" %>
             <%= f.text_field :zip_code, :placeholder => "0000000" %>

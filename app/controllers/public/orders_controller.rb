@@ -59,6 +59,17 @@ class Public::OrdersController < ApplicationController
         )
       end
 
+      @cart_items = current_customer.cart_items.all
+      @cart_items.each do |cart|
+        @order_items = @order.order_items.new
+        @order_items.order_id = @order.id
+        @order_items.item_id = cart.item.id
+        @order_items.quantity = cart.quantity
+        @order_items.taxed_item_price_at_order = cart.item.add_tax_sales_price
+        @order_items.process_status = 0
+        @order_items.save
+      end
+
 
       @cart_items = CartItem.where(customer: current_customer)
       @cart_items.destroy_all
@@ -68,6 +79,16 @@ class Public::OrdersController < ApplicationController
       render :new
     end
   end
+
+  def index
+    @orders = Order.where(customer: current_customer)
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
+  end
+
 
 
   private
