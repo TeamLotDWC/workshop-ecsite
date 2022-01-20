@@ -11,19 +11,6 @@ class Public::OrdersController < ApplicationController
     @shipping_addresses = ShippingAddress.where(customer: current_customer)
   end
 
-  #購入の確定
-  def create #Order に情報を保存
-    @order = current_customer.orders.new(order_params)
-    if @order.save
-      @cart_items = CartItem.where(customer: current_customer)
-
-      @cart_items.destroy_all
-      redirect_to complete_customers_orders_path
-    else
-      @order = Order.new(order_params)
-      render :new
-    end
-  end
 
   def confirm
     @order = Order.new(
@@ -36,14 +23,18 @@ class Public::OrdersController < ApplicationController
       @order.zip_code = current_customer.zip_code
       @order.address = current_customer.address
     elsif params[:order][:address_number] == "2"
-        #[:registered] viewで定義
-        @order.name = current_customer.shipping_addresses.find(params[:order][:registered]).name
-        @order.zip_code = current_customer.shipping_addresses.find(params[:order][:registered]).zip_code
-        @order.address = current_customer.shipping_addresses.find(params[:order][:registered]).address
+      #[:registered] viewで定義
+      @order.name = current_customer.shipping_addresses.find(params[:order][:registered]).name
+      @order.zip_code = current_customer.shipping_addresses.find(params[:order][:registered]).zip_code
+      @order.address = current_customer.shipping_addresses.find(params[:order][:registered]).address
     elsif params[:order][:address_number] == "3"
-      address_new = current_customer.shipping_addresses.new(shipping_addresses_params)
-      if address_new.save #確定前のsave...
-      else
+      @order.zip_code = params[:order][:zip_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
+      @ship_address = "1"
+
+      unless @order.valid? == true
+        @shipping_addresses = ShippingAddress.where(customer: current_customer)
         render :new
       end
     else
@@ -55,6 +46,24 @@ class Public::OrdersController < ApplicationController
       @total = @delivery_fee + @items_total
   end
 
+  #購入の確定
+  def create #Order に情報を保存
+    @order = current_customer.orders.new(order_params)
+    if @order.save
+      flash[:notice] = "Completed Order"
+
+      if params[:order][:ship] == "1"
+        current_customer.shipping_address.create(address_params)
+      end
+
+      @cart_items = CartItem.where(customer: current_customer)
+      @cart_items.destroy_all
+      redirect_to complete_customers_orders_path
+    else
+      @order = Order.new(order_params)
+      render :new
+    end
+  end
 
 
   private
