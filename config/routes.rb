@@ -8,7 +8,7 @@ devise_scope :customer do
   get 'customers/cancel' => 'public/registrations#cancel', as: :cancel_customer_registration
   get 'customers/signup' => 'public/registrations#new', as: :new_customer_registration
   post 'customers' => 'public/registrations#create#create', as: :customer_registration
-  
+
 end
 
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -31,7 +31,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       end
       resources :orders, only:[:new, :index, :show, :create] do
         collection do
-          get 'confirm'
+          post 'confirm'
           get 'complete'
         end
       end
