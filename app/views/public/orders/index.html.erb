@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 注文履歴一覧 </h5>
+      <table border="1">
+        <tr style="background-color: #eeeeee;">
+          <th style="padding: 15px 10px;">注文日</th>
+          <th style="padding: 15px 10px;">配送先</th>
+          <th style="padding: 15px 10px;">注文商品</th>
+          <th style="padding: 15px 10px;">支払金額</th>
+          <th style="padding: 15px 10px;">ステータス</th>
+          <th style="padding: 15px 10px;">注文詳細</th>
+        </tr>
+        <% @orders.each do |order| %>
+        <tr>
+          <td style="padding: 15px 10px;"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+          <td style="padding: 15px 10px;">
+            <%= order.zip_code %><br>
+            <%= order.address %><br>
+            <%= order.name %>
+          </td>
+          <td style="padding: 15px 10px;">
+            <% order.order_items.each do |order_item| %>
+              <%= order_item.item.name %><br>
+            <% end %>
+          </td>
+          <td style="padding: 15px 10px;"><%= order.shipping_status %></td>
+          <td style="padding: 15px 10px;"><%= (order.total_price).to_s(:delimited) %></td>
+          <td style="padding: 15px 10px;"><%= link_to "注文詳細", customers_order_path(order) %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

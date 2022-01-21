@@ -2,7 +2,7 @@ class ShippingAddress < ApplicationRecord
   belongs_to :customer, optional: true
 
   def full_address
-      "〒#{zip_code}#{address}[氏名] #{name}"
+      "〒#{zip_code} #{address} #{name}"
   end
 
   validates :zip_code, length: {minimum: 7, maximum: 7}
