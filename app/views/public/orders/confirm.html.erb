@@ -21,7 +21,7 @@
         </table>
         </td>
         <td>
-        <table border="1">
+        <table border="1" style="margin-left: 50px;">
           <tr >
             <th style="padding: 15px 10px; background-color: #eeeeee;">送料</th>
             <td style="padding: 15px 10px;"><%= @delivery_fee.to_s(:delimited) %></td>
@@ -57,7 +57,7 @@
           <%= f.hidden_field :payment_method %>
           <%= f.hidden_field :total_price, value: @total_price %>
           <%= f.hidden_field :address_number, value: params[:order][:address_number] %>
-          <%= f.submit "注文を確定する" %>
+          <%= f.submit "注文を確定する", class: "btn btn-success"%>
         <% end %>
     </div>
   </div>
