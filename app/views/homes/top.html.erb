@@ -3,14 +3,12 @@
     <div class= 'col-2'>
       <p>ここにジャンル検索欄が入ります</p>
     </div>
-    <div class= 'col-8'>
-      <div class= 'mx-auto px-4 py-5' style="width: 450px;">
-        <p class= 'text-left'>
-          ようこそ、ながのCAKEへ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。
-        </p>
+    <div class= 'col-8 d-flex align-items-center justify-content-center'>
+      <div class= 'text-left lead px-4 py-5'>
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。
       </div>
     </div>
     <div class= 'col-2'></div>
@@ -18,17 +16,17 @@
   <div class= 'row'>
     <div class= 'col-2'></div>
     <div class= 'col-10'>
-    　<h3>新着商品を以下に記述します</h3>
+    　<h3 class="font-weight-bold">新着商品</h3>
     　<div class ="d-inline-flex">
         <% @items.each do |item| %>
-          <div class= "item-box px-3 py-3">
+          <div class= "px-3 py-3">
             <div>
               <%= link_to item_path(item) do %>
-                <%= attachment_image_tag(item, :item_image, :fill, 180, 180) %>
+                <%= attachment_image_tag(item, :item_image, :fill, 180, 150) %>
               <% end %>
             </div>
-            <div><%= item.name %></div>
-            <div><%= item.net_price.to_s(:delimited) %></div>
+            <div class="font-weight-bold my-2"><%= item.name %></div>
+            <div class="font-weight-bold my-2">¥<%= item.net_price.to_s(:delimited) %></div>
           </div>
         <% end %>
       </div>
