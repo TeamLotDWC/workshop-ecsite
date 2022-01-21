@@ -7,14 +7,14 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item)
     else
       render :new
     end
   end
 
   def index
-    @items = Item.all.page(params[:page]).per(5)
+    @items = Item.all.page(params[:page]).per(20)
   end
 
   def show

@@ -4,7 +4,9 @@
       <p>ここにジャンル検索欄が入ります</p>
     </div>
     <div class= "col-4">
-      <%= attachment_image_tag(@item, :item_image, :fill, 300, 240) %>
+      <div class="my-5">
+        <%= attachment_image_tag(@item, :item_image, :fill, 300, 240) %>
+      </div>
     </div>
     <div class= "col-6">
       <h4><%= @item.name %></h4>
