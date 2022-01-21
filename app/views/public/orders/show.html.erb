@@ -7,19 +7,23 @@
         <table border="1">
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">注文日</th>
-            <td style="padding: 15px 10px;">date</td>
+            <td style="padding: 15px 10px;"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">配送先</th>
-            <td style="padding: 15px 10px;">zip_code,address,name</td>
+            <td style="padding: 15px 10px;">
+              <%= @order.zip_code %>
+              <%= @order.address %>
+              <%= @order.name %>
+            </td>
           </tr>
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">支払い方法</th>
-            <td style="padding: 15px 10px;">payment_method</td>
+            <td style="padding: 15px 10px;"><%= @order.payment_method %></td>
           </tr>
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">ステータス</th>
-            <td style="padding: 15px 10px;">shipping_status</td>
+            <td style="padding: 15px 10px;"><%= @order.shipping_status %></td>
           </tr>
         </table>
         </td>
@@ -29,15 +33,15 @@
         <table border="1">
           <tr >
             <th style="padding: 15px 10px; background-color: #eeeeee;">商品合計</th>
-            <td style="padding: 15px 10px;">items_total</td>
+            <td style="padding: 15px 10px;"><%= (@order.total_price - @order.delivery_fee ).to_s(:delimited) %></td>
           </tr>
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">配送料</th>
-            <td style="padding: 15px 10px;">delivery_fee</td>
+            <td style="padding: 15px 10px;"><%= (@order.delivery_fee).to_s(:delimited) %></td>
           </tr>
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">ご請求金額</th>
-            <td style="padding: 15px 10px;">total_price</td>
+            <td style="padding: 15px 10px;"><%= (@order.total_price).to_s(:delimited) %></td>
           </tr>
         </table>
       </td></tr></table>
@@ -49,12 +53,14 @@
           <th style="padding: 15px 10px;">個数</th>
           <th style="padding: 15px 10px;">小計</th>
         </tr>
-        <tr>
-          <td style="padding: 15px 10px;">name</td>
-          <td style="padding: 15px 10px;">net_price税込</td>
-          <td style="padding: 15px 10px;">quantity</td>
-          <td style="padding: 15px 10px;">items_total</td>
-        </tr>
+        <% @order_items.each do |order_item| %>
+          <tr>
+            <td style="padding: 15px 10px;"><%= order_item.item.name %></td>
+            <td style="padding: 15px 10px;"><%= (order_item.taxed_item_price_at_order).to_s(:delimited) %></td>
+            <td style="padding: 15px 10px;"><%= order_item.quantity %></td>
+            <td style="padding: 15px 10px;"><%= (order_item.taxed_item_price_at_order*order_item.quantity).to_s(:delimited) %></td>
+          </tr>
+        <% end %>
       </table>
     </div>
   </div>

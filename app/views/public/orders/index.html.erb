@@ -19,11 +19,13 @@
             <%= order.address %><br>
             <%= order.name %>
           </td>
-          <% order.order_items.each do |order_item| %>
-          <td style="padding: 15px 10px;"><%= order_item.item.name %></td>
-          <% end %>
+          <td style="padding: 15px 10px;">
+            <% order.order_items.each do |order_item| %>
+              <%= order_item.item.name %><br>
+            <% end %>
+          </td>
           <td style="padding: 15px 10px;"><%= order.shipping_status %></td>
-          <td style="padding: 15px 10px;"><%= order.total_price %></td>
+          <td style="padding: 15px 10px;"><%= (order.total_price).to_s(:delimited) %></td>
           <td style="padding: 15px 10px;"><%= link_to "注文詳細", customers_order_path(order) %></td>
         </tr>
         <% end %>
