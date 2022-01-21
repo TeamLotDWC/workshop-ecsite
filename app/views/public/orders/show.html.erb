@@ -3,7 +3,7 @@
     <div class="col">
       <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 注文情報確認 </h5>
       <table><tr><td>
-        <div  style="margin: 10px;">注文情報</div>
+        <div  style="margin: 10px; font-weight:bold; font-weight:bold;">注文情報</div>
         <table border="1" style="margin: 10px;">
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">注文日</th>
@@ -11,9 +11,9 @@
           </tr>
           <tr>
             <th style="padding: 15px 10px; background-color: #eeeeee;">配送先</th>
-            <td style="padding: 15px 10px;">
-              <%= @order.zip_code %>
-              <%= @order.address %>
+            <td style="padding: 10px 10px;">
+              〒<%= @order.zip_code %><br>
+              <%= @order.address %><br>
               <%= @order.name %>
             </td>
           </tr>
@@ -29,29 +29,29 @@
         </td>
 
         <td>
-        <div style="margin-left: 50px; margin-bottom:10px;">請求情報</div>
+        <div style="margin-left: 50px; margin-bottom:10px; font-weight:bold;">請求情報</div>
         <table border="1" style="margin-left: 50px;">
           <tr >
-            <th style="padding: 15px 10px; background-color: #eeeeee;">商品合計</th>
-            <td style="padding: 15px 10px;"><%= (@order.total_price - @order.delivery_fee ).to_s(:delimited) %></td>
+            <th style="padding: 15px 70px 15px 10px; background-color: #eeeeee;">商品合計</th>
+            <td style="padding: 15px 90px 15px 10px;"><%= (@order.total_price - @order.delivery_fee ).to_s(:delimited) %></td>
           </tr>
           <tr>
-            <th style="padding: 15px 10px; background-color: #eeeeee;">配送料</th>
-            <td style="padding: 15px 10px;"><%= (@order.delivery_fee).to_s(:delimited) %></td>
+            <th style="padding: 15px 70px 15px 10px; background-color: #eeeeee;">配送料</th>
+            <td style="padding: 15px 90px 15px 10px;"><%= (@order.delivery_fee).to_s(:delimited) %></td>
           </tr>
           <tr>
-            <th style="padding: 15px 10px; background-color: #eeeeee;">ご請求金額</th>
-            <td style="padding: 15px 10px;"><%= (@order.total_price).to_s(:delimited) %></td>
+            <th style="padding: 15px 70px 15px 10px; background-color: #eeeeee;">ご請求金額</th>
+            <td style="padding: 15px 90px 15px 10px;"><%= (@order.total_price).to_s(:delimited) %></td>
           </tr>
         </table>
       </td></tr></table>
-      <div style="margin: 10px;">注文内容</div>
+      <div style="margin: 10px; font-weight:bold;">注文内容</div>
       <table border="1"  style="margin: 10px;">
         <tr style="background-color: #eeeeee;">
-          <th style="padding: 15px 10px;">商品</th>
-          <th style="padding: 15px 10px;">単価(税込)</th>
-          <th style="padding: 15px 10px;">個数</th>
-          <th style="padding: 15px 10px;">小計</th>
+          <th style="padding: 15px 150px 15px 10px;">商品</th>
+          <th style="padding: 15px 40px 15px 10px;">単価(税込)</th>
+          <th style="padding: 15px 30px 15px 10px;">個数</th>
+          <th style="padding: 15px 70px 15px 10px;">小計</th>
         </tr>
         <% @order_items.each do |order_item| %>
           <tr>
