@@ -3,10 +3,10 @@
     <div class="col-6">
       <h5 style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;" >ジャンル一覧・追加</h5>
       <table class="table ">
-        <thead>
-          <tr>
-            <td>ジャンル名</td>
-            <%= form_with model: @genre, url:admin_genres_path, local: true do |f| %>
+        <%= form_with model: @genre, url:admin_genres_path, local: true do |f| %>
+          <thead>
+            <tr>
+              <td>ジャンル名</td>
               <%= render "public/shared/error_messages", resource: @genre %>
               <td class="form-group">
                 <%= f.text_field :name %>
@@ -15,9 +15,9 @@
               <td class="form-group">
                 <%= f.submit "新規登録", class: 'btn btn-success' %>
               </td>
-            <% end %>
-          </tr>
-        </thead>
+            </tr>
+          </thead>
+        <% end %>
         <tbody>
           <tr class="table-active">
             <th></th>

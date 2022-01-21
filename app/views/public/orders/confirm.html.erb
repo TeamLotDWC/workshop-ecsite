@@ -21,7 +21,7 @@
         </table>
         </td>
         <td>
-        <table border="1">
+        <table border="1" style="margin-left: 50px;">
           <tr >
             <th style="padding: 15px 10px; background-color: #eeeeee;">送料</th>
             <td style="padding: 15px 10px;"><%= @delivery_fee.to_s(:delimited) %></td>
@@ -44,10 +44,10 @@
           </tr>
           <tr>
             <th>お届け先</th>
-            <td>〒<%= @order.zip_code %><%= @order.address %></td>
-            <td><%= @order.name %></td>
+            <td>〒<%= @order.zip_code %>　<%= @order.address %>　<%= @order.name %></td>
           </tr>
         </table>
+        <div style="padding: 15px 10px;" >
         <%= form_with model: @order, url: customers_orders_path, local: true do |f| %>
           <%= f.hidden_field :name %>
           <%= f.hidden_field :address %>
@@ -57,8 +57,9 @@
           <%= f.hidden_field :payment_method %>
           <%= f.hidden_field :total_price, value: @total_price %>
           <%= f.hidden_field :address_number, value: params[:order][:address_number] %>
-          <%= f.submit "注文を確定する" %>
+          <%= f.submit "注文を確定する", class: "btn btn-success"%>
         <% end %>
+        </div>
     </div>
   </div>
 </div>
