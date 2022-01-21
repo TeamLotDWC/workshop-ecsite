@@ -51,7 +51,7 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     if @order.save
       flash[:notice] = "Completed Order"
-
+     
       if params[:order][:ship] == "1"
         current_customer.shipping_address.create(address_params)
       end

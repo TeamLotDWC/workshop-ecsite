@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 2022_01_16_064448) do
     t.string "zip_code", null: false
     t.text "address", null: false
     t.integer "delivery_fee", null: false
-    t.integer "payment_method", default: 0, null: false
-    t.integer "shipping_status", default: 0, null: false
+    t.integer "payment_method", null: false
+    t.integer "shipping_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
