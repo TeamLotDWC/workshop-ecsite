@@ -5,32 +5,32 @@
         <%= form_with model: @order, url:confirm_customers_orders_path, method: :post, local: true do |f| %>
 
             <h5 style="font-weight: bold;">支払い方法</h5>
-            <%= f.radio_button :payment_method, :"クレジットカード", checked: true %>
-            <%= f.label :payment_method_1, "クレジットカード" %><br>
-            <%= f.radio_button :payment_method, :"銀行振込" %>
-            <%= f.label :payment_method_2, "銀行支払い" %>
+            <div style="margin-left: 30px;"><%= f.radio_button :payment_method, :"クレジットカード", checked: true %>
+            <%= f.label :payment_method_1, "クレジットカード" %></div>
+            <div style="margin-left: 30px;"><%= f.radio_button :payment_method, :"銀行振込" %>
+            <%= f.label :payment_method_2, "銀行支払い" %></div>
 
 
             <h5 style="font-weight: bold;">お届け先</h5>
-            <%= f.radio_button :address_number, 1, checked: true %>
-            <%= f.label :address_number_1, "ご自身の住所" %>
-             <%= "#{current_customer.zip_code} #{current_customer.address}" %>
-             <%= current_customer.family_name %><%= current_customer.first_name %><br>
+            <div style="margin-left: 30px;"><%= f.radio_button :address_number, 1, checked: true %>
+            <%= f.label :address_number_1, "ご自身の住所" %></div>
+             <div style="margin-left: 60px;">〒<%= "#{current_customer.zip_code} #{current_customer.address}" %></div>
+             <div style="margin-left: 60px;"><%= current_customer.family_name %><%= current_customer.first_name %></div>
 
-            <%= f.radio_button :address_number, 2 %>
-            <%= f.label :address_number_2, "登録済み住所から選択" %><br>
-             <%= f.collection_select(:registered, @shipping_addresses.all, :id, :full_address, prompt: "選択してください") %><br>
+            <div style="margin-left: 30px;"><%= f.radio_button :address_number, 2 %>
+            <%= f.label :address_number_2, "登録済み住所から選択" %></div>
+            <div style="margin-left: 60px;"><%= f.collection_select(:registered, @shipping_addresses.all, :id, :full_address, prompt: "選択してください") %></div>
 
-            <%= f.radio_button :address_number, 3 %>
-            <%= f.label :address_number_3, "新しいお届け先" %>
-            <%= f.label :zip_code, "郵便番号（ハイフンなし）" %>
-            <%= f.text_field :zip_code, :placeholder => "0000000" %>
-            <%= f.label :address, "住所" %>
-            <%= f.text_field :address, :size=>"60x0", :placeholder => "東京都渋谷区代々木神園町0-0" %>
-            <%= f.label :name, "宛名" %>
-            <%= f.text_field :name, :placeholder => "令和道子" %><br>
+            <div style="margin-left: 30px;"><%= f.radio_button :address_number, 3 %>
+            <%= f.label :address_number_3, "新しいお届け先" %></div>
+            <div style="margin-left: 60px;"><%= f.label :zip_code, "郵便番号（ハイフンなし）" %>
+            <%= f.text_field :zip_code, :placeholder => "0000000" %></div>
+            <div style="margin-left: 60px;"><%= f.label :address, "住所" %>
+            <%= f.text_field :address, :size=>"60x0", :placeholder => "東京都渋谷区代々木神園町0-0" %></div>
+            <div style="margin-left: 60px;"><%= f.label :name, "宛名" %>
+            <%= f.text_field :name, :placeholder => "令和道子" %><div>
 
-            <%= f.submit "確認画面へ進む", class: "btn btn-success" %>
+            <div style="margin-left: 35%; margin-bottom: 10px; margin-top: 10px;"><%= f.submit "確認画面へ進む", class: "btn btn-success" %></div>
         <% end %>
     </div>
   </div>
