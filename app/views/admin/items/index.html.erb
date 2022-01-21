@@ -7,20 +7,20 @@
         <% end %>
       </div>
       <table class='table table-hover table-inverse table-borderless'>
-        <thead>
+        <thead class="table-secondary">
           <tr>
-            <th class="text-center" style="width: 80px;">商品ID</th>
-            <th class="text-center" style="width: 250px;">商品名</th>
-            <th class="text-center" style="width: 100px;">税抜価格</th>
-            <th class="text-center" style="width: 140px;">ジャンル</th>
-            <th class="text-center" style="width: 120px;">ステータス</th>
+            <th class="text-center" style="width: 15%;">商品ID</th>
+            <th class="text-center" style="width: 40%;">商品名</th>
+            <th class="text-center" style="width: 15%;">税抜価格</th>
+            <th class="text-center" style="width: 15%;">ジャンル</th>
+            <th class="text-center" style="width: 15%;">ステータス</th>
           </tr>
         </thead>
         <tbody>
           <% @items.each do |item| %>
             <tr>
               <td class="text-center"><%= item.id %></td>
-              <td class="text-center">
+              <td class="text-left">
                 <%= link_to item.name, admin_item_path(item), class: "item_#{item.id}" %>
               </td>
               <td class="text-center"><%= item.net_price.to_s(:delimited) %></td>
