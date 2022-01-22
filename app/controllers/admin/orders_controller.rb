@@ -13,8 +13,8 @@ class Admin::OrdersController < ApplicationController
       if order_params[:shipping_status] == "入金確認"
         @order.order_items.update_all(process_status: 1)
       end
-
-      redirect_to admin_order_path(@order), notice: 'sucse'
+      flash[:notice] = "You have updated order successfully."
+      redirect_to admin_order_path(@order)
     else
       render :show
     end
