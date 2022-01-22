@@ -62,7 +62,7 @@
                   <%= order_item.taxed_item_price_at_order * order_item.quantity %>
                   <% array << (order_item.taxed_item_price_at_order * order_item.quantity) %>
                 </td>
-                <%= form_with model: order_item, url: admin_order_order_item_path(order_item), local:true do |f| %>
+                <%= form_with model: order_item, url: admin_order_order_item_path(@order.id, order_item.id), local:true do |f| %>
                   <td style="display: flex">
                     <div class="mr-2"><%= f.select :process_status, OrderItem.process_statuses.keys, {} %></div>
                     <div><%= f.submit "更新", class: "btn btn-success" %></div>
