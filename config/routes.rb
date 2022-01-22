@@ -18,6 +18,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
   root to: 'homes#top'
   get 'about' => 'homes#about'
+  get 'search' => 'searchs#search'
 
   scope module: :public do
     resource :customers, only: [:show, :edit, :update] do
