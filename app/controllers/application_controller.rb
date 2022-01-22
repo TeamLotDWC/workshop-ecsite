@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_customer!, if: :customer_url
 
   def customer_url
-    request.fullpath.include?("/customers")
+    request.fullpath.include?("/customers") && request.fullpath.exclude?("/admin")
   end
 end
