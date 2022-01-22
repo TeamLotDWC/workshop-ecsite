@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
   def admin_url
     request.fullpath.include?("/admin")
   end
+
+  before_action :authenticate_customer!, if: :customer_url
+
+  def customer_url
+    request.fullpath.include?("/customers")
+  end
 end
