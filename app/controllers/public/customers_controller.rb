@@ -12,9 +12,10 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
+      flash[:notice] = "You have updated  successfully."
       redirect_to customers_path(current_customer)
     else
-      render :show
+      render :edit
     end
   end
 

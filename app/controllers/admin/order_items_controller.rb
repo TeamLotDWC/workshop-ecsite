@@ -12,8 +12,8 @@ class Admin::OrderItemsController < ApplicationController
       if @order.order_items.all? {|order_item| order_item.process_status == "製作完了"}
         @order.update(shipping_status: 3)
       end
-
-      redirect_to admin_order_path(@order), notice: 'sucsess'
+      flash[:notice] = "You have updated order_item successfully."
+      redirect_to admin_order_path(@order)
     else
       @order = @order_item.order
       render 'admin/order/show'
