@@ -66,7 +66,7 @@ class Public::OrdersController < ApplicationController
         @order_items.item_id = cart.item.id
         @order_items.quantity = cart.quantity
         @order_items.taxed_item_price_at_order = cart.item.add_tax_sales_price
-        @order_items.process_status = 1
+        @order_items.process_status = 0
         @order_items.save
       end
 
