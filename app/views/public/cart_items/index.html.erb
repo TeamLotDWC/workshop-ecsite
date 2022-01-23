@@ -1,0 +1,68 @@
+<div class= "container">
+  <div class= "row">
+    <div class= "col-12">
+      <div class='text-right py-3'>
+        <%= link_to "カートを空にする", reset_customers_cart_items_path, method: :delete, class: "btn btn-danger" %>
+      </div>
+      <table class='table table-hover table-inverse table-bordered'>
+        <thead class="table-secondary">
+          <tr>
+            <th class="text-center" style="width: 40%;">商品名</th>
+            <th class="text-center" style="width: 15%;">単価(税込)</th>
+            <th class="text-center" style="width: 15%;">数量</th>
+            <th class="text-center" style="width: 15%;">小計</th>
+            <th style="width: 15%;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |x| %>
+            <tr>
+              <td>
+                <div class="d-inline-flex">
+                  <%= link_to item_path(x.item_id) do %>
+                    <%= attachment_image_tag(x.item, :item_image, :fill, 48, 40) %>
+                  <% end %>
+                  <p class="lead font-weight-bold mx-4"><%= x.item.name %></p>
+                </div>
+              </td>
+              <td clas><%= x.item.add_tax_sales_price.to_s(:delimited) %></td>
+              <%= form_with(model: @cart_item, url: customers_cart_item_path(x.id), method: :patch, local:true) do |f|  %>
+                <%= f.hidden_field :item_id, value: x.item_id %>
+                <td>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <%= f.select :quantity, *[1..20], selected: x.quantity, class: 'mx-3' %>
+                    <%= f.submit '変更', class: 'btn btn-success mx-3' %>
+                  </div>
+                </td>
+              <% end %>
+              <td><%= x.subtotal.to_s(:delimited)  %></td>
+              <%= form_with(model: @cart_item, url: customers_cart_item_path(x.id), method: :delete, local:true) do |f|  %>
+                <td class="text-center">
+                  <%= f.hidden_field :item_id, value: x.item_id %>
+                  <%= f.submit '削除する', class: "btn btn-danger" %>
+                </td>
+              <% end %>
+            </tr>
+            <% @total_price +=  x.subtotal %>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="mx-5 my-5 d-flex justify-content-between">
+        <div class="text-left">
+          <%= link_to "お買い物を続ける", root_path, class: "btn btn-lg btn-primary mx-5" %>
+        </div>
+        <% if @cart_items.present? %>
+          <div class="text-right mx-5">
+            <table class="table table-bordered">
+              <td class="lead table-secondary">合計金額</td>
+              <td class="lead"><%= @total_price.to_s(:delimited) %></td>
+            </table>
+          </div>
+        <% end %>
+      </div>
+      <div class= "d-flex justify-content-center my-5">
+        <%= link_to "情報入力に進む", new_customers_order_path, class: "btn btn-lg btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>

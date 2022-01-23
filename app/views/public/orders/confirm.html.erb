@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 注文情報確認 </h5>
+      <table><tr><td>
+        <table border="1">
+          <tr style="background-color: #eeeeee;">
+            <th style="padding: 15px 10px;">商品名</th>
+            <th style="padding: 15px 10px;">単価(税込)</th>
+            <th style="padding: 15px 10px;">数量</th>
+            <th style="padding: 15px 10px;">小計</th>
+          </tr>
+          <% @cart_items.each do |cart| %>
+          <tr>
+            <td style="padding: 15px 10px;"><%= cart.item.name %></td>
+            <td style="padding: 15px 10px;"><%= (cart.item.add_tax_sales_price).to_s(:delimited) %></td>
+            <td style="padding: 15px 10px;"><%= cart.quantity %></td>
+            <td style="padding: 15px 10px;"><%= (cart.item.add_tax_sales_price*cart.quantity).to_s(:delimited) %></td>
+          </tr>
+          <% end %>
+        </table>
+        </td>
+        <td>
+        <table border="1" style="margin-left: 50px;">
+          <tr >
+            <th style="padding: 15px 10px; background-color: #eeeeee;">送料</th>
+            <td style="padding: 15px 10px;"><%= @delivery_fee.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">商品合計</th>
+            <td style="padding: 15px 10px;"><%= @items_total.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th style="padding: 15px 10px; background-color: #eeeeee;">請求金額</th>
+            <td style="padding: 15px 10px;"><%= @total_price.to_s(:delimited) %></td>
+          </tr>
+        </table>
+        </td></tr></table>
+
+        <table>
+          <tr>
+            <th>支払い方法</th>
+            <td><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <th>お届け先</th>
+            <td>〒<%= @order.zip_code %>　<%= @order.address %>　<%= @order.name %></td>
+          </tr>
+        </table>
+        <div style="padding: 15px 10px;" >
+        <%= form_with model: @order, url: customers_orders_path, local: true do |f| %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :address %>
+          <%= f.hidden_field :customer_id %>
+          <%= f.hidden_field :zip_code %>
+          <%= f.hidden_field :delivery_fee, value: 800 %>
+          <%= f.hidden_field :payment_method %>
+          <%= f.hidden_field :total_price, value: @total_price %>
+          <%= f.hidden_field :address_number, value: params[:order][:address_number] %>
+          <%= f.submit "注文を確定する", class: "btn btn-success"%>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div>

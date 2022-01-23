@@ -1,0 +1,48 @@
+<div class= "container">
+  <div class= "row">
+    <div class= "col-3 d-flex align-items-center justify-content-center">
+      <%= attachment_image_tag(@item, :item_image, size: '320x240') %>
+    </div>
+    <div class= "col-9">
+      <table class='table table-borderless'>
+        <tbody>
+          <tr>
+            <td style="width: 150px;">商品名</td>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td>商品説明</td>
+            <td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td><%= @item.genre.name %></td>
+          </tr>
+          <tr>
+            <td>税込価格<br>(税抜価格)</td>
+            <td class="d-inline-flex align-items-center">
+              <p class="lead"><%= @item.add_tax_sales_price.to_s(:delimited)%>（<%= @item.net_price.to_s(:delimited) %>）</p>
+              <p>円</p>
+            </td>
+          </tr>
+          <tr>
+            <td>販売ステータス</td>
+            <td>
+              <% if @item.is_stocked == true %>
+                <span class= "text-success font-weight-bold">販売中</span>
+              <% else %>
+                <span class= "text-secondary font-weight-bold">販売停止中</span>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class= "mx-5 px-5 my-3">
+        <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-lg btn-success" %></div>
+    </div>
+  </div>
+</div>

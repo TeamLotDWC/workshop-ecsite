@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
-devise_for :customers,skip: [:passwords,], controllers: {
+devise_for :customers,skip: [:passwords, :registrations], controllers: {
   registrations: 'public/registrations',
   sessions: 'public/sessions'
 }
+devise_scope :customer do
+  get 'customers/cancel' => 'public/registrations#cancel', as: :cancel_customer_registration
+  get 'customers/signup' => 'public/registrations#new', as: :new_customer_registration
+  post 'customers' => 'public/registrations#create#create', as: :customer_registration
+
+end
 
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
@@ -12,6 +18,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
   root to: 'homes#top'
   get 'about' => 'homes#about'
+  get 'search' => 'searchs#search'
 
   scope module: :public do
     resource :customers, only: [:show, :edit, :update] do
@@ -25,7 +32,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       end
       resources :orders, only:[:new, :index, :show, :create] do
         collection do
-          get 'confirm'
+          post 'confirm'
           get 'complete'
         end
       end

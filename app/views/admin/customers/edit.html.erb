@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 style="background-color: #eeeeee; display: inline-block; padding:0 20px; margin-bottom: 50px;">
+        <strong><%= @customer.family_name %><%= @customer.first_name %></strong>さんの<strong>会員情報編集</strong> 
+      </h5>
+      <%= form_with  model: @customer, url: admin_customer_path, local:true do |f| %>
+        <%= render "public/shared/error_messages", resource: @customer %>
+        <div class="form-group" style="display: flex">
+          <div class="col-sm-3">会員ID</div>
+          <div class="col-sm-3"><%= @customer.id %></div>
+          <div class="col-sm-3"></div>
+        </div>
+        <div class="form-group" style="display: flex">
+          <div class="col-sm-3">名前</div>
+          <div class="col-sm-3"><%= f.text_field :family_name %></div>
+          <div class="col-sm-3"><%= f.text_field :first_name %></div>
+        </div>
+        <div class="form-group" style="display: flex">
+          <div class="col-sm-3">フリガナ</div>
+          <div class="col-sm-3"><%= f.text_field :family_name_kana %></div>
+          <div class="col-sm-3"><%= f.text_field :first_name_kana %></div>
+        </div>
+        <div class="form-group" style="display: flex">
+          <div class="col-sm-3"><%= f.label :zip_code, "郵便番号（ハイフンなし）" %></div>
+          <div class="col-sm-3"><%= f.text_field :zip_code %></div>
+        </div>
+        <div class="form-group" style="display: flex">
+          <div class="col-sm-3"><%= f.label :address, "住所" %></div>
+          <div class="col-sm-7"><%= f.text_field :address, :size=>"63" %></div>
+        </div>
+        <div class="form-group" style="display: flex">
+          <div class="col-sm-3"><%= f.label :phone_number, "電話番号（ハイフンなし）" %></div>
+          <div class="col-sm-3"><%= f.text_field :phone_number %></div>
+        </div>
+        <div class="form-group" style="display: flex">
+          <div class="col-sm-3"><%= f.label :email, "メールアドレス" %></div>
+          <div class="col-sm-3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+        </div>
+        <div class="form-group" style="display: flex">
+          <div class="col-sm-3">会員ステータス</div>
+          <div class="col-sm-3">
+            <%= f.radio_button :is_deleted, :false, checked: true  %>
+            <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_deleted, :ture %>
+            <%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+          </div>
+        </div>
+        <div style="margin-bottom: 50px;">
+          <div class="col-sm-4 offset-sm-3"><%= f.submit "         変更を保存         ", class: "btn btn-success" %></div>
+        </div>
+      <% end %>
+      
+    </div>
+  </div>
+</div>

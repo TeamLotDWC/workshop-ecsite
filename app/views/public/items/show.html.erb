@@ -1,0 +1,30 @@
+<div class= "container">
+  <div class= "row">
+    <div class= 'col-2'>
+      <%= render 'searchs/genre-search-form', genres: @genres %>
+    </div>
+    <div class= "col-4">
+      <div class="my-5">
+        <%= attachment_image_tag(@item, :item_image, :fill, 300, 240) %>
+      </div>
+    </div>
+    <div class= "col-6">
+      <h4><%= @item.name %></h4>
+      <p><%= @item.introduction %></p>
+      <h5 class="my-5">¥<%= @item.add_tax_sales_price.to_s(:delimited) %><span class="small">(税込)</span></h5>
+      <div class="my-3">
+        <% if @item.is_stocked == true %>
+          <%= form_with(model: @cart_item, url: customers_cart_items_path, method: :post, local:true) do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <div class="mx-2 d-inline-flex">
+              <div class="mr-5"><%= f.select :quantity, *[1..20], include_blank: "個数選択" %></div>
+              <div class="ml-4"><%= f.submit 'カートに入れる', class: 'btn btn-success' %></div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class= "text-secondary font-weight-bold py-4">販売停止中</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

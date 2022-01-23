@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class="offset-sm-2 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 配送先編集 </h5>
+      <%= form_with scope: :shipping_address, url: customers_shipping_address_path(@shipping_address), method: :patch, local: true do |f| %>
+        <table>
+          <thead>
+            <%= render "public/shared/error_messages", resource: @shipping_address %>
+            <tr>
+              <td class="col-sm-3" style="padding: 15px 10px;"><%= f.label :zip_code, "郵便番号（ハイフンなし）" %></td>
+              <td class="col-sm-3" style="padding: 15px 10px;"><%= f.text_field :zip_code, :placeholder => "0000000" %></td>
+            </tr>
+            <tr>
+              <td class="col-sm-3" style="padding: 15px 10px;"><%= f.label :address, "住所" %></td>
+              <td class="col-sm-3" style="padding: 15px 10px;"><%= f.text_field :address, :size=>"60x0", :placeholder => "東京都渋谷区代々木神園町0-0" %></td>
+            </tr>
+            <tr>
+              <td class="col-sm-3" style="padding: 15px 10px;"><%= f.label :name, "宛名" %></td>
+              <td class="col-sm-3" style="padding: 15px 10px;"><%= f.text_field :name, :placeholder => "令和道子" %></td>
+              <td class="col-sm-3" style="padding: 15px 10px;"><%= f.submit "変更内容を保存", class: "btn btn-success" %></td>
+            </tr>
+          </thead>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

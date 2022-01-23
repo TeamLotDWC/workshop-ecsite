@@ -1,0 +1,40 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <div class= "col-2">
+        <a class="navbar-brand" href="/">
+          <%= image_tag 'logo.png', size: '160x80' %>
+        </a>
+      </div>
+      <div class="col-10">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <li><%= link_to '商品一覧', admin_items_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to '会員一覧', admin_customers_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to '注文履歴一覧', admin_orders_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to 'ジャンル一覧', admin_genres_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-light mx-2" %></li>
+            <% elsif customer_signed_in? %>
+              <li><%= link_to 'マイページ', customers_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to '商品一覧', items_path, class: "btn btn-light mx-2"%></li>
+              <li><%= link_to 'カート', customers_cart_items_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-light mx-2" %></li>
+            <% else %>
+              <li><%= link_to 'アバウト', about_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to '商品一覧', items_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-light mx-2" %></li>
+              <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-light mx-2" %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="text-right my-2">
+          <%= render 'searchs/search-form' %>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

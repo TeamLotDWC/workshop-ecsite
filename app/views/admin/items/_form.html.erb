@@ -1,0 +1,42 @@
+<%= form_with(model: [ :admin, item], local:true) do |f| %>
+  <%= render 'layouts/errors', obj: item %>
+  <table>
+    <tr>
+      <td class="py-3" style="width: 120px;"><%= f.label :item_image, "商品画像" %></td>
+      <td><%= f.attachment_field :item_image, class: "form-control-file" %></td>
+    </tr>
+    <tr>
+      <td class="py-3"><%= f.label :name, "商品名" %></td>
+      <td><%= f.text_field :name, placeholder: "商品名", class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td class="py-3"><%= f.label :introduction, "商品説明" %></td>
+      <td><%= f.text_area :introduction, placeholder: "商品説明", class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td class="py-3"><%= f.label :genre_id, "ジャンル" %></td>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %></td>
+    </tr>
+    <tr>
+      <td class="py-3"><%= f.label :net_price, "税抜価格" %></td>
+      <td class="d-inline-flex"><%= f.text_field :net_price, class: "form-control" %><span class="px-2 py-1">円</span></td>
+    </tr>
+    <tr>
+      <td class="py-3"><%= f.label :is_stocked, "販売ステータス" %></td>
+      <td class="d-inline-flex py-3">
+        <div>
+          <%= f.radio_button :is_stocked, :true %>
+          <%= f.label :is_stocked, "販売中", value: true %>
+        </div>
+        <div class="px-4">
+          <%= f.radio_button :is_stocked, :false %>
+          <%= f.label :is_stocked, "販売停止中", value: false %>
+        </div>
+      </td>
+    </tr>
+   </table>
+  <div class="form-group mx-auto" style="width: 100px;">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+
+<% end %>
