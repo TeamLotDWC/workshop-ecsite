@@ -43,6 +43,18 @@ Genre.create!(
 
 )
 
+Customer.create!(
+  email: "test_user1@gmail.com",
+  family_name: "東京",
+  first_name: "太郎",
+  family_name_kana: "トウキョウ",
+  first_name_kana: "タロウ",
+  zip_code: "1638001",
+  address: "東京都新宿区西新宿２丁目８−１",
+  phone_number: "0353211111",
+  password: "testtest"
+)
+
 Item.create!(
   [
     {
